@@ -30,6 +30,11 @@ public class TablesController {
         tablesService.save(table);
     }
 
+    @PutMapping("/{tableId}")
+    public void updateTable(@PathVariable("tableId") Long id, @RequestBody Tables table){
+        tablesService.update(id, table);
+    }
+
     @DeleteMapping("/{tableId}")
     public void deleteTable(@PathVariable("tableId") Long id){
         tablesService.delete(id);
