@@ -13,8 +13,10 @@ const state = reactive({
 })
 
 const deleteTable = (id) => {
-    store.dispatch(Constant.DELETE_TABLE, { id });
+    store.dispatch('deleteTable', { id });
 }
+
+store.dispatch("getTables")
 
 </script>
 
@@ -54,9 +56,9 @@ const deleteTable = (id) => {
             <tbody>
                 <tr v-for="table in state.tables" :key="table.id">
                     <td>{{ table.id }}</td>
-                    <td>{{ table.numberTable }}</td>
-                    <td>{{ table.capacityTable }}</td>
-                    <td>{{ table.statusTable }}</td>
+                    <td>{{ table.number }}</td>
+                    <td>{{ table.capacity }}</td>
+                    <td>{{ table.status }}</td>
                     <td>
                         <EditTable :table="table"/>
                         <!-- Modal pasandole props -->

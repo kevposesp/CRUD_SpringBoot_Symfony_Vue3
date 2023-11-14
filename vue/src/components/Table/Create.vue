@@ -10,9 +10,9 @@ const props = defineProps({
         type: Object,
         default: () => ({
             id: '',
-            numberTable: '',
-            capacityTable: '',
-            statusTable: ''
+            number: '',
+            capacity: '',
+            status: ''
         })
     },
     edit: {
@@ -27,20 +27,20 @@ const reactiveTable = reactive(props.table);
 const addTable = () => {
     const tableData = {
         id: reactiveTable.id,
-        numberTable: reactiveTable.numberTable,
-        capacityTable: reactiveTable.capacityTable,
-        statusTable: reactiveTable.statusTable
+        number: reactiveTable.number,
+        capacity: reactiveTable.capacity,
+        status: reactiveTable.status
     };
-    store.dispatch(Constant.ADD_TABLE, tableData);
+    store.dispatch('createTable', tableData);
 };
 
 
 const saveTable = () => {
     const tableData = {
         id: reactiveTable.id,
-        numberTable: reactiveTable.numberTable,
-        capacityTable: reactiveTable.capacityTable,
-        statusTable: reactiveTable.statusTable
+        number: reactiveTable.number,
+        capacity: reactiveTable.capacity,
+        status: reactiveTable.status
     };
     store.dispatch(Constant.UPDATE_TABLE, tableData);
 };
@@ -50,21 +50,21 @@ const saveTable = () => {
 <template>
     <div>
         <form>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="idTable" class="form-label">Id de Mesa:</label>
                 <input v-model="reactiveTable.id" type="text" class="form-control" id="idTable" required>
+            </div> -->
+            <div class="mb-3">
+                <label for="number" class="form-label">Número de Mesa:</label>
+                <input v-model="reactiveTable.number" type="text" class="form-control" id="number" required>
             </div>
             <div class="mb-3">
-                <label for="numberTable" class="form-label">Número de Mesa:</label>
-                <input v-model="reactiveTable.numberTable" type="text" class="form-control" id="numberTable" required>
+                <label for="capacity" class="form-label">Capacidad:</label>
+                <input v-model="reactiveTable.capacity" type="text" class="form-control" id="capacity" required>
             </div>
             <div class="mb-3">
-                <label for="capacityTable" class="form-label">Capacidad:</label>
-                <input v-model="reactiveTable.capacityTable" type="text" class="form-control" id="capacityTable" required>
-            </div>
-            <div class="mb-3">
-                <label for="statusTable" class="form-label">Estado:</label>
-                <input v-model="reactiveTable.statusTable" type="text" class="form-control" id="statusTable" required>
+                <label for="status" class="form-label">Estado:</label>
+                <input v-model="reactiveTable.status" type="text" class="form-control" id="status" required>
             </div>
             <button type="button" class="btn btn-success" @click="addTable()" v-if="!edit">Crear Mesa</button>
             <button type="button" class="btn btn-info" @click="saveTable()" v-if="edit">Guardar Mesa</button>

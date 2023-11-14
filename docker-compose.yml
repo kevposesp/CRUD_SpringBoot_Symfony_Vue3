@@ -41,13 +41,13 @@ services:
 
   symfony:
     build:
-      context: ./symfony
+      context: ./symfony_backend
       dockerfile: Dockerfile
     container_name: symfony
     ports:
       - "8000:8000"
     volumes:
-      - ./symfony:/var/www/html
+      - ./symfony_backend:/var/www/html
     depends_on:
       - mysqldb
     command: sh -c "sleep 30 && php bin/console doctrine:migrations:migrate --no-interaction && symfony server:start"

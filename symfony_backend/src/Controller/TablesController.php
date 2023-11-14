@@ -77,7 +77,13 @@ class TablesController extends AbstractController
             $entityManager->flush();
             return new JsonResponse([
                 "message" => "Mesa creada correctamente.",
-                "code" => 201
+                "code" => 201,
+                "table" => [
+                    'id' => $table->getId(),
+                    'number' => $table->getNumber(),
+                    'capacity' => $table->getCapacity(),
+                    'status' => $table->getStatus()
+                ]
             ], 201);
         } catch (\Exception $exception) {
             return new JsonResponse(['error' => 'Error al crear la mesa'], 409);
@@ -108,7 +114,13 @@ class TablesController extends AbstractController
 
             return new JsonResponse([
                 'message' => 'Mesa actualizada correctamente.',
-                'code' => 200
+                'code' => 200,
+                "table" => [
+                    'id' => $table->getId(),
+                    'number' => $table->getNumber(),
+                    'capacity' => $table->getCapacity(),
+                    'status' => $table->getStatus()
+                ]
             ], 200);
         } catch (\Exception $exception) {
             return new JsonResponse(['error' => 'Error al actualizar la mesa.'], 500);
