@@ -5,13 +5,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbl_tables")
+@Table(name = "tbl_table")
 public class Tables {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tableId;
-    @Column(name = "number_table", unique = true, nullable = false)
-    private Number numberTable;
-    private Number capacityTable;
-    private String statusTable;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  @Column(name = "number")
+  private Integer number;
+
+  @Column(name = "capacity")
+  private Integer capacity;
+
+  @Column(name = "status")
+  private String status;
 }

@@ -1,10 +1,12 @@
 import { createStore } from 'vuex';
 import Constant from '../Constant';
 import symfonyApiService from '../core/http/symfony.api.service';
+import springBootApiService from '../core/http/springboot.api.service';
 
 const store = createStore({
     state: {
-        tables: []
+        tables: [],
+        table: {}
     },
     mutations: {
         getTables(state, payload) {
@@ -20,14 +22,22 @@ const store = createStore({
         updateTable(state, payload) {
             let index = state.tables.findIndex((item) => item.id === payload.id);
             state.tables[index] = payload;
-        }
+        },
+        setTable(state, payload) {
+            state.table = payload
+        },
     },
     actions: {
         getTables(store, payload) {
             symfonyApiService.get('/tables')
                 .then((response) => {
                     store.commit('getTables', response.data);
-                    console.log(response.data);
+                })
+        },
+        getTablesClient(store, payload) {
+            springBootApiService.get('/tables')
+                .then((response) => {
+                    store.commit('getTables', response.data);
                 })
         },
         createTable(store, payload) {
@@ -39,20 +49,25 @@ const store = createStore({
         deleteTable(store, payload) {
             symfonyApiService.delete('/table/' + payload.id)
                 .then((response) => {
-                    console.log(response);
                     store.commit('deleteTable', payload)
                 })
         },
         updateTable(store, payload) {
             symfonyApiService.put('/table/' + payload.id, payload)
                 .then((response) => {
-                    console.log(response);
                     store.commit('updateTable', response.data.table);
                 });
+        },
+        getTableDetails(store, payload) {
+            springBootApiService.get("/tables/" + payload)
+                .then((res) => {
+                    store.commit("setTable", res.data);
+                })
         }
     },
     getters: {
-        tables: (state) => { return state.tables }
+        tables: (state) => { return state.tables },
+        table: (state) => { return state.table }
     }
 });
 

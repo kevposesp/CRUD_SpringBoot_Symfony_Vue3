@@ -35,9 +35,9 @@ public class TablesService {
             Tables existingTable = existingTableOptional.get();
 
             // Actualizar los campos necesarios
-            // existingTable.setNumberTable(table.getNumberTable());
-            existingTable.setCapacityTable(table.getCapacityTable());
-            existingTable.setStatusTable(table.getStatusTable());
+            existingTable.setNumber(table.getNumber());
+            existingTable.setCapacity(table.getCapacity());
+            existingTable.setStatus(table.getStatus());
 
             // Guardar la tabla actualizada en la base de datos
             tablesRepository.save(existingTable);

@@ -18,7 +18,7 @@
                             <router-link class="nav-link" to="/list">Lista</router-link>
                         </li>
                         <li class="nav-item">
-                            <!-- <router-link class="nav-link" to="/crear">Crear</router-link> -->
+                            <router-link class="nav-link" to="/listclient">Client</router-link>
                         </li>
                     </ul>
                 </div>
